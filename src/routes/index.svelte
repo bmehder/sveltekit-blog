@@ -3,6 +3,14 @@
     const res = await fetch('https://jsonplaceholder.typicode.com/posts')
     const posts = await res.json()
 
+    const today = new Date()
+    const date =
+      today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+    const time =
+      today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
+    const dateTime = date + ' ' + time
+    console.log('Built at:', dateTime)
+
     return {
       props: {
         posts,
