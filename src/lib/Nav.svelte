@@ -1,11 +1,19 @@
+<script>
+  import { page } from '$app/stores'
+</script>
+
 <nav>
   <h1><a sveltekit:prefetch href="/">My Blog</a></h1>
   <ul>
     <li>
-      <a sveltekit:prefetch href="/">Blog</a>
+      <a class:active={$page.path === '/'} sveltekit:prefetch href="/">Blog</a>
     </li>
     <li>
-      <a sveltekit:prefetch href="/authors">Authors</a>
+      <a
+        class:active={$page.path === '/authors'}
+        sveltekit:prefetch
+        href="/authors">Authors</a
+      >
     </li>
   </ul>
 </nav>
@@ -35,6 +43,10 @@
     text-decoration: none;
   }
   a:hover {
+    text-decoration: underline;
+  }
+  .active {
+    font-weight: bold;
     text-decoration: underline;
   }
 </style>

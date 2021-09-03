@@ -2,23 +2,23 @@
   export const load = async ({ page, fetch }) => {
     const id = page.params.id
 
-    const [resUser, resPosts] = await Promise.all([
+    const [resAuthor, resPosts] = await Promise.all([
       fetch(`https://jsonplaceholder.typicode.com/users/${id}`),
       fetch('https://jsonplaceholder.typicode.com/posts'),
     ])
 
-    const [user, allPosts] = await Promise.all([
-      resUser.json(),
+    const [author, allPosts] = await Promise.all([
+      resAuthor.json(),
       resPosts.json(),
     ])
 
     const posts = allPosts.filter(post => {
-      return post.userId === user.id
+      return post.userId === author.id
     })
 
     return {
       props: {
-        user,
+        author,
         posts,
       },
     }
@@ -26,10 +26,10 @@
 </script>
 
 <script>
-  export let user
+  export let author
   export let posts
 
-  const { name, website, email } = user
+  const { name, website, email } = author
 </script>
 
 <h1>{name}</h1>
