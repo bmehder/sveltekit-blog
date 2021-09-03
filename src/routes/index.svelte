@@ -3,14 +3,6 @@
     const res = await fetch('https://jsonplaceholder.typicode.com/posts')
     const posts = await res.json()
 
-    const today = new Date()
-    const date =
-      today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
-    const time =
-      today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
-    const dateTime = date + ' ' + time
-    console.log('Built at:', dateTime)
-
     return {
       props: {
         posts,
@@ -23,7 +15,7 @@
   export let posts
 </script>
 
-<div>
+<section>
   {#each posts as { id, title, body }}
     <article>
       <h2><a sveltekit:prefetch href="/blog/{id}">{title}</a></h2>
@@ -33,10 +25,10 @@
       <p><a sveltekit:prefetch href="/blog/{id}">Read more &raquo;</a></p>
     </article>
   {/each}
-</div>
+</section>
 
 <style>
-  div {
+  section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
@@ -72,7 +64,7 @@
   }
 
   @media screen and (max-width: 600px) {
-    div {
+    section {
       grid-template-columns: 1fr;
     }
   }

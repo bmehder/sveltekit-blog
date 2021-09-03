@@ -1,18 +1,22 @@
 <script>
   import { page } from '$app/stores'
+
+  $: path = $page.path
+  $: id = $page.params.id
+
+  $: isBlogPage = path === '/' || path === `/blog/${id}`
+  $: isAuthorsPage = path === '/authors' || path === `/authors/${id}`
 </script>
 
 <nav>
-  <h1><a sveltekit:prefetch href="/">My Blog</a></h1>
+  <h1><a sveltekit:prefetch href="/">Home</a></h1>
   <ul>
     <li>
-      <a class:active={$page.path === '/'} sveltekit:prefetch href="/">Blog</a>
+      <a class:active={isBlogPage} sveltekit:prefetch href="/">Blog</a>
     </li>
     <li>
-      <a
-        class:active={$page.path === '/authors'}
-        sveltekit:prefetch
-        href="/authors">Authors</a
+      <a class:active={isAuthorsPage} sveltekit:prefetch href="/authors"
+        >Authors</a
       >
     </li>
   </ul>
