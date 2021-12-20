@@ -1,11 +1,13 @@
 <script context="module">
   export const load = async ({ page, fetch }) => {
     const id = page.params.id
+    const res = await fetch(`/api/blog/${id}.json`)
+    const post = await res.json()
 
-    const postRes = await fetch(
-      `https://jsonplaceholder.typicode.com/posts/${id}`
-    )
-    const post = await postRes.json()
+    // const postRes = await fetch(
+    //   `https://jsonplaceholder.typicode.com/posts/${id}`
+    // )
+    // const post = await postRes.json()
 
     const userRes = await fetch(
       `https://jsonplaceholder.typicode.com/users/${post.userId}`
@@ -31,6 +33,7 @@
 
 <h1>{title}</h1>
 <p>{body}</p>
+
 <p>
   -Written by <a sveltekit:prefetch href={`/authors/${id}`}>{name}</a>
 </p>

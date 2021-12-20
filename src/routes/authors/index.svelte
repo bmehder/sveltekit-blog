@@ -1,6 +1,6 @@
 <script context="module">
   export const load = async ({ fetch }) => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users/')
+    const res = await fetch('/api/authors/users.json')
     const authors = await res.json()
 
     return {
